@@ -1,0 +1,29 @@
+{
+    "name": "scandio/troba-user-bundle",
+    "type": "symfony-bundle",
+    "description": "User Bundle for troba and symfony2",
+    "keywords": ["users", "login", "troba", "bridge", "symfony2", "bundle", "scandio"],
+    "homepage": "https://github.com/siklol/TrobaUserBundle",
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Veit Osiander",
+            "homepage": "https://github.com/siklol"
+        }
+    ],
+
+    "require": {
+        "php":                      ">=5.3.3",
+        "symfony/framework-bundle": "~2.4",
+        "scandio/troba": "dev-master"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "SikIndustries\\Bundles\\UserBundle": ""
+        }
+    },
+
+    "target-dir": "SikIndustries/Bundles/UserBundle"
+}
