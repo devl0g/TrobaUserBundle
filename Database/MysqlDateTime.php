@@ -6,7 +6,7 @@
  * Time: 11:33 PM
  */
 
-namespace SikIndustries\Bundles\TrobaUserBundle\Database;
+namespace SikIndustries\Bundles\UserBundle\Database;
 
 
 class MysqlDateTime extends \DateTime

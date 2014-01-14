@@ -8,7 +8,7 @@
 namespace SikIndustries\Bundles\UserBundle\Listener;
 
 use SikIndustries\Bundles\UserBundle\Entity\User;
-use SikIndustries\Bundles\TrobaUserBundle\Database\MysqlDateTime;
+use SikIndustries\Bundles\UserBundle\Database\MysqlDateTime;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
