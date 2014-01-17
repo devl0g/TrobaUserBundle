@@ -28,6 +28,7 @@
         <service id="sik_industries.user_provider" class="%sik_industries.user_provider.class%">
             <argument id="security.encoder_factory" type="service" />
             <argument id="troba.entity_manager" type="service" />
+            <argument id="sik_industries.user_manager" type="service" />
         </service>
 
         <service id="app_core.listener.login" class="%sik_industries.user_login_listener.class%">
