@@ -25,5 +25,5 @@
         }
     },
 
-    "target-dir": "SikIndustries/Bundles/UserBundle"
+    "target-dir": "SikIndustries/Bundles/TrobaUserBundle"
 }

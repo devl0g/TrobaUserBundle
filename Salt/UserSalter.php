@@ -6,7 +6,7 @@
  * Time: 11:40 PM
  */
 
-namespace SikIndustries\Bundles\UserBundle\Salt;
+namespace SikIndustries\Bundles\TrobaUserBundle\Salt;
 
 
 class UserSalter

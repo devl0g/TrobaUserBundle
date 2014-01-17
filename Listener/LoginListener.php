@@ -5,10 +5,10 @@
  * Date: 1/13/14
  * Time: 11:28 PM
  */
-namespace SikIndustries\Bundles\UserBundle\Listener;
+namespace SikIndustries\Bundles\TrobaUserBundle\Listener;
 
-use SikIndustries\Bundles\UserBundle\Entity\User;
-use SikIndustries\Bundles\UserBundle\Database\MysqlDateTime;
+use SikIndustries\Bundles\TrobaUserBundle\Entity\User;
+use SikIndustries\Bundles\TrobaUserBundle\Database\MysqlDateTime;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;

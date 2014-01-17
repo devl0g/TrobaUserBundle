@@ -6,9 +6,9 @@
  * Time: 10:37 PM
  */
 
-namespace SikIndustries\Bundles\UserBundle\Controller;
+namespace SikIndustries\Bundles\TrobaUserBundle\Controller;
 
-use SikIndustries\Bundles\UserBundle\Form\UserLoginForm;
+use SikIndustries\Bundles\TrobaUserBundle\Form\UserLoginForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class AuthenticationController
- * @package SikIndustries\Bundles\UserBundle\Controller
+ * @package SikIndustries\Bundles\TrobaUserBundle\Controller
  * @Route("/users")
  */
 class AuthenticationController extends Controller

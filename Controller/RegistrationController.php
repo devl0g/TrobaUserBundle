@@ -1,9 +1,9 @@
 <?php
-namespace SikIndustries\Bundles\UserBundle\Controller;
+namespace SikIndustries\Bundles\TrobaUserBundle\Controller;
 
-use SikIndustries\Bundles\UserBundle\Entity\User;
-use SikIndustries\Bundles\UserBundle\Form\UserRegistrationForm;
-use SikIndustries\Bundles\UserBundle\Salt\UserSalter;
+use SikIndustries\Bundles\TrobaUserBundle\Entity\User;
+use SikIndustries\Bundles\TrobaUserBundle\Form\UserRegistrationForm;
+use SikIndustries\Bundles\TrobaUserBundle\Salt\UserSalter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -13,7 +13,7 @@ use troba\EQM\EQM;
 
 /**
  * Class DefaultController
- * @package SikIndustries\Bundles\UserBundle\Controller
+ * @package SikIndustries\Bundles\TrobaUserBundle\Controller
  * @Route("/users")
  */
 class RegistrationController extends Controller

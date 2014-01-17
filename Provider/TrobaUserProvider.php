@@ -6,11 +6,11 @@
  * Time: 10:40 PM
  */
 
-namespace SikIndustries\Bundles\UserBundle\Provider;
+namespace SikIndustries\Bundles\TrobaUserBundle\Provider;
 
 
 use Scandio\TrobaBridgeBundle\Manager\TrobaManager;
-use SikIndustries\Bundles\UserBundle\Entity\User;
+use SikIndustries\Bundles\TrobaUserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\SimpleFormAuthenticatorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;

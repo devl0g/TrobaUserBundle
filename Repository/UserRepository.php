@@ -6,7 +6,7 @@
  * Time: 11:20 PM
  */
 
-namespace SikIndustries\Bundles\UserBundle\Repository;
+namespace SikIndustries\Bundles\TrobaUserBundle\Repository;
 
 use troba\EQM\EQM;
 

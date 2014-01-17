@@ -1,4 +1,4 @@
-SikIndustries\Bundles\UserBundle\Entity\User:
+SikIndustries\Bundles\TrobaUserBundle\Entity\User:
   properties:
     email:
       - NotBlank: ~

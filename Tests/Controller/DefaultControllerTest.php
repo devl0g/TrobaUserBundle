@@ -1,6 +1,6 @@
 <?php
 
-namespace SikIndustries\Bundles\UserBundle\Tests\Controller;
+namespace SikIndustries\Bundles\TrobaUserBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

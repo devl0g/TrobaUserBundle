@@ -1,7 +1,7 @@
 <?php
-namespace SikIndustries\Bundles\UserBundle\Entity;
+namespace SikIndustries\Bundles\TrobaUserBundle\Entity;
 
-use SikIndustries\Bundles\UserBundle\Database\MysqlDateTime;
+use SikIndustries\Bundles\TrobaUserBundle\Database\MysqlDateTime;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
 use troba\Model\Getters;

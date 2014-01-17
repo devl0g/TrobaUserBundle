@@ -6,7 +6,7 @@
  * Time: 4:28 PM
  */
 
-namespace SikIndustries\Bundles\UserBundle\Form;
+namespace SikIndustries\Bundles\TrobaUserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,7 +30,7 @@ class UserRegistrationForm extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'SikIndustries\Bundles\UserBundle\Entity\User'
+            'data_class' => 'SikIndustries\Bundles\TrobaUserBundle\Entity\User'
         ]);
     }
 

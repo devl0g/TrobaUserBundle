@@ -6,7 +6,7 @@
 
     <!--
     <parameters>
-        <parameter key="sik_industries_bundles_user.example.class">SikIndustries\Bundles\UserBundle\Example</parameter>
+        <parameter key="sik_industries_bundles_user.example.class">SikIndustries\Bundles\TrobaUserBundle\Example</parameter>
     </parameters>
 
     <services>
@@ -19,8 +19,8 @@
     -->
 
     <parameters>
-        <parameter key="sik_industries.user_provider.class">SikIndustries\Bundles\UserBundle\Provider\TrobaUserProvider</parameter>
-        <parameter key="sik_industries.user_login_listener.class">SikIndustries\Bundles\UserBundle\Listener\LoginListener</parameter>
+        <parameter key="sik_industries.user_provider.class">SikIndustries\Bundles\TrobaUserBundle\Provider\TrobaUserProvider</parameter>
+        <parameter key="sik_industries.user_login_listener.class">SikIndustries\Bundles\TrobaUserBundle\Listener\LoginListener</parameter>
     </parameters>
 
     <services>

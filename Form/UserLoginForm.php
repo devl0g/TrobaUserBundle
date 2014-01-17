@@ -6,7 +6,7 @@
  * Time: 4:28 PM
  */
 
-namespace SikIndustries\Bundles\UserBundle\Form;
+namespace SikIndustries\Bundles\TrobaUserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

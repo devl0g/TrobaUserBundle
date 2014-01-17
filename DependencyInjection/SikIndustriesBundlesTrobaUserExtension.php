@@ -1,9 +1,11 @@
 <?php
 
-namespace SikIndustries\Bundles\UserBundle\DependencyInjection;
+namespace SikIndustries\Bundles\TrobaUserBundle\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Exception\BadMethodCallException;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -21,6 +23,13 @@ class SikIndustriesBundlesUserExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+
+        if (!isset($config['user'])) {
+            throw new \LogicException("Please provide the 'user' configuration with your user class");
+        }
+        if (!class_exists($config['user'])) {
+            throw new \LogicException(sprintf("User Class %s does not exist!"), $config['user']);
+        }
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
