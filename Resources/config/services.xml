@@ -21,6 +21,7 @@
     <parameters>
         <parameter key="sik_industries.user_provider.class">SikIndustries\Bundles\TrobaUserBundle\Provider\TrobaUserProvider</parameter>
         <parameter key="sik_industries.user_login_listener.class">SikIndustries\Bundles\TrobaUserBundle\Listener\LoginListener</parameter>
+        <parameter key="sik_industries.user_manager.class">SikIndustries\Bundles\TrobaUserBundle\Manager\UserManager</parameter>
     </parameters>
 
     <services>
@@ -31,6 +32,10 @@
 
         <service id="app_core.listener.login" class="%sik_industries.user_login_listener.class%">
             <tag name="kernel.event_listener" event="security.interactive_login" method="onSecurityInteractiveLogin"/>
+        </service>
+
+        <service id="sik_industries.user_manager" class="%sik_industries.user_manager.class%">
+            <argument>%sik_industries.user_class%</argument>
         </service>
     </services>
 </container>

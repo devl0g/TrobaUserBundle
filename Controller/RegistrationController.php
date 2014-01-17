@@ -43,7 +43,7 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request)
     {
-        $user = new User();
+        $user = $this->get('sik_industries.user_manager')->createUser();
         $form = $this->createForm(new UserRegistrationForm(), $user);
         $form->submit($request);
 

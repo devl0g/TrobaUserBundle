@@ -11,6 +11,7 @@ namespace SikIndustries\Bundles\TrobaUserBundle\Provider;
 
 use Scandio\TrobaBridgeBundle\Manager\TrobaManager;
 use SikIndustries\Bundles\TrobaUserBundle\Entity\User;
+use SikIndustries\Bundles\TrobaUserBundle\Manager\UserManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\SimpleFormAuthenticatorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -25,13 +26,26 @@ use troba\EQM\EQM;
 
 class TrobaUserProvider implements UserProviderInterface, SimpleFormAuthenticatorInterface
 {
+    /**
+     * @var \Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface
+     */
     private $encoderFactory;
+
+    /**
+     * @var \Scandio\TrobaBridgeBundle\Manager\TrobaManager
+     */
     private $manager;
 
-    public function __construct(EncoderFactoryInterface $encoderFactory, TrobaManager $manager)
+    /**
+     * @var \SikIndustries\Bundles\TrobaUserBundle\Manager\UserManager
+     */
+    private $userManager;
+
+    public function __construct(EncoderFactoryInterface $encoderFactory, TrobaManager $manager, UserManager $userManager)
     {
         $this->encoderFactory = $encoderFactory;
         $this->manager = $manager;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -51,7 +65,7 @@ class TrobaUserProvider implements UserProviderInterface, SimpleFormAuthenticato
      */
     public function loadUserByUsername($username)
     {
-        return EQM::query(new User())->where("username = :username", ['username' => $username])->one();
+        return EQM::query($this->userManager->createUser())->where("username = :username", ['username' => $username])->one();
     }
 
     /**

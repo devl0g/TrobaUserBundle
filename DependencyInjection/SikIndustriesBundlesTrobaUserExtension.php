@@ -33,5 +33,7 @@ class SikIndustriesBundlesTrobaUserExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->setParameter('sik_industries.user_class', $config['user']);
     }
 }
