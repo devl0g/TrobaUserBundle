@@ -12,24 +12,24 @@ class User implements UserInterface
 {
     use Persisters;
 
-    private $__table = "users";
+    protected $__table = "users";
 
-    private $id;
-    private $username;
-    private $email;
-    private $enabled;
-    private $salt;
-    private $password;
-    private $last_login;
-    private $locked;
-    private $expired;
-    private $expires_at;
-    private $confirmation_token;
-    private $password_requested_at;
-    private $credentials_expired;
-    private $credentials_expire_at;
-    private $created_at;
-    private $modified_at;
+    protected $id;
+    protected $username;
+    protected $email;
+    protected $enabled;
+    protected $salt;
+    protected $password;
+    protected $last_login;
+    protected $locked;
+    protected $expired;
+    protected $expires_at;
+    protected $confirmation_token;
+    protected $password_requested_at;
+    protected $credentials_expired;
+    protected $credentials_expire_at;
+    protected $created_at;
+    protected $modified_at;
 
     public function __construct()
     {
