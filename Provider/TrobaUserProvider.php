@@ -65,7 +65,13 @@ class TrobaUserProvider implements UserProviderInterface, SimpleFormAuthenticato
      */
     public function loadUserByUsername($username)
     {
-        return EQM::query($this->userManager->createUser())->where("username = :username", ['username' => $username])->one();
+        $user = EQM::query($this->userManager->createUser())
+            ->where("username = :username", ['username' => $username])
+            ->one();
+
+        if (!$user instanceof UserInterface) {
+            throw new UsernameNotFoundException();
+        }
     }
 
     /**
@@ -114,6 +120,7 @@ class TrobaUserProvider implements UserProviderInterface, SimpleFormAuthenticato
             throw new AuthenticationException('Invalid username or password');
         }
 
+        print_r($user);exit();
         $passwordValid = $this->encoderFactory->getEncoder($user)->isPasswordValid(
             $user->getPassword(),
             $token->getCredentials(),
