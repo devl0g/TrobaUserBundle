@@ -120,7 +120,6 @@ class TrobaUserProvider implements UserProviderInterface, SimpleFormAuthenticato
             throw new AuthenticationException('Invalid username or password');
         }
 
-        print_r($user);exit();
         $passwordValid = $this->encoderFactory->getEncoder($user)->isPasswordValid(
             $user->getPassword(),
             $token->getCredentials(),
