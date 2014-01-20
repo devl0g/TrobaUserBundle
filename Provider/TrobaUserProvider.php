@@ -72,6 +72,8 @@ class TrobaUserProvider implements UserProviderInterface, SimpleFormAuthenticato
         if (!$user instanceof UserInterface) {
             throw new UsernameNotFoundException();
         }
+
+        return $user;
     }
 
     /**
