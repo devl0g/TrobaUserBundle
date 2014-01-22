@@ -18,8 +18,17 @@
                                 type="password" id="user_login_form_password" name="_password"
                                 required="required" class="form-control">
                     </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="_remember_me" checked="checked" />
+                            {{ 'Keep logged in' | trans }}
+                        </label>
+                    </div>
+
                     <button type="submit" id="user_login_form_login" name="user_login_form[login]"
-                            class="btn btn-primary">{{ 'Login' | trans }}</button>
+                            class="btn btn-primary">{{ 'Login' | trans }}
+                    </button>
                 </div>
             </form>
         </div>

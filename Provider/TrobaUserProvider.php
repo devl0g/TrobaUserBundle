@@ -103,7 +103,8 @@ class TrobaUserProvider implements UserProviderInterface, SimpleFormAuthenticato
      */
     public function supportsClass($class)
     {
-        return ($class instanceof User);
+        $userClass = 'SikIndustries\\Bundles\\TrobaUserBundle\\Entity\\User';
+        return $class == $userClass || is_subclass_of($class, $userClass);
     }
 
     /**

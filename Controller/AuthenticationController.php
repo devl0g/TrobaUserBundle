@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AuthenticationController extends Controller
 {
     /**
-     * @Route("/login", name="users_login")
+     * @Route("/login", name="users_login", requirements={"_scheme": "https"})
      * @Method("get")
      * @Template()
      * @param Request $request
@@ -35,7 +35,7 @@ class AuthenticationController extends Controller
     }
 
     /**
-     * @Route("/check", name="users_check")
+     * @Route("/check", name="users_check", requirements={"_scheme": "https"})
      * @Method("post")
      * @param Request $request
      */
