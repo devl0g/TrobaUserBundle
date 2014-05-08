@@ -34,7 +34,7 @@ class RegistrationController extends Controller
     }
 
     /**
-     * @Template("SikIndustriesBundlesUserBundle:Registration:create.html.twig")
+     * @Template("SikIndustriesBundlesTrobaUserBundle:Registration:create.html.twig")
      * @Route("/register", name="users_register_finish")
      * @Method("post")
      *
