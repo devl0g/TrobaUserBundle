@@ -16,7 +16,8 @@
     "require": {
         "php":                      ">=5.3.3",
         "symfony/framework-bundle": "~2.4",
-        "scandio/troba": "dev-master"
+        "scandio/troba": "dev-master",
+        "scandio/troba-bridge-bundle": "dev-master"
     },
 
     "autoload": {
