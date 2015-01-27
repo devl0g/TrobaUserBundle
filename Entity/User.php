@@ -2,8 +2,8 @@
 namespace SikIndustries\Bundles\TrobaUserBundle\Entity;
 
 use SikIndustries\Bundles\TrobaUserBundle\Database\MysqlDateTime;
-use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
+use troba\EQM\EQM;
 use troba\Model\Getters;
 use troba\Model\Persisters;
 use troba\Model\Setters;
@@ -316,8 +316,19 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        // TODO: IMPLEMENT USER ROLES
-        return ["ROLE_USER"];
+        $roles = ["ROLE_USER"];
+
+        $dbRoles = EQM::query(new Role())
+            ->innerJoin('roles_users ru', 'Role.id = ru.role_id')
+            ->where('ru.user_id = :userId', ['userId' => $this->getId()])
+            ->all();
+
+        /** @var Role $role */
+        foreach ($dbRoles as $role) {
+            $roles[] = $role->getRole();
+        }
+
+        return $roles;
     }
 
     /**

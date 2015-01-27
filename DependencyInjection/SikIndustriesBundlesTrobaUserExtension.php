@@ -28,7 +28,7 @@ class SikIndustriesBundlesTrobaUserExtension extends Extension
             throw new \LogicException("Please provide the 'user' configuration with your user class");
         }
         if (!class_exists($config['user'])) {
-            throw new \LogicException(sprintf("User Class %s does not exist!"), $config['user']);
+            throw new \LogicException(sprintf("User Class %s does not exist!", $config['user']));
         }
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
