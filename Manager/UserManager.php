@@ -8,13 +8,22 @@
 
 namespace SikIndustries\Bundles\TrobaUserBundle\Manager;
 
+use SikIndustries\Bundles\TrobaUserBundle\Entity\User;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+
 class UserManager
 {
     private $userClass;
 
-    public function __construct($userClass)
+    /**
+     * @var EncoderFactoryInterface
+     */
+    private $encoderFactory;
+
+    public function __construct($userClass, EncoderFactoryInterface $encoderFactory)
     {
         $this->userClass = $userClass;
+        $this->encoderFactory = $encoderFactory;
     }
 
     /**
@@ -24,5 +33,16 @@ class UserManager
     {
         $userClass = $this->userClass;
         return new $userClass();
+    }
+
+    /**
+     * @param User $user
+     * @return string
+     */
+    public function password(User $user)
+    {
+        return $this->encoderFactory
+            ->getEncoder($user)
+            ->encodePassword($user->getPassword(), $user->getSalt());
     }
 } 

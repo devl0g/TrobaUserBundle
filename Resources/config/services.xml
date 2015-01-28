@@ -37,6 +37,7 @@
 
         <service id="sik_industries.user_manager" class="%sik_industries.user_manager.class%">
             <argument>%sik_industries.user_class%</argument>
+            <argument id="security.encoder_factory" type="service" />
         </service>
     </services>
 </container>

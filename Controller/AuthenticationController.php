@@ -41,7 +41,7 @@ class AuthenticationController extends Controller
      */
     public function checkAction(Request $request)
     {
-        print_r($request);exit();
+
     }
 
     /**

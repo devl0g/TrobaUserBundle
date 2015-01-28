@@ -3,6 +3,7 @@ namespace SikIndustries\Bundles\TrobaUserBundle\Controller;
 
 use SikIndustries\Bundles\TrobaUserBundle\Entity\User;
 use SikIndustries\Bundles\TrobaUserBundle\Form\UserRegistrationForm;
+use SikIndustries\Bundles\TrobaUserBundle\Manager\UserManager;
 use SikIndustries\Bundles\TrobaUserBundle\Salt\UserSalter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -43,7 +44,9 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request)
     {
-        $user = $this->get('sik_industries.user_manager')->createUser();
+        /** @var UserManager $userManager */
+        $userManager = $this->get('sik_industries.user_manager');
+        $user = $userManager->createUser();
         $form = $this->createForm(new UserRegistrationForm(), $user);
         $form->submit($request);
 
@@ -51,10 +54,8 @@ class RegistrationController extends Controller
             /** @var EQM $eqm */
             $eqm = $this->get('troba.entity_manager');
 
-            $factory = $this->get('security.encoder_factory');
-            $password = $factory->getEncoder($user)->encodePassword($user->getPassword(), $user->getSalt());
-            $user->setPassword($password);
             $user->setSalt(UserSalter::getSalt());
+            $user->setPassword($userManager->password($user));
 
             $eqm->insert($user);
 

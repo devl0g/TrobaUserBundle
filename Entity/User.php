@@ -4,13 +4,14 @@ namespace SikIndustries\Bundles\TrobaUserBundle\Entity;
 use SikIndustries\Bundles\TrobaUserBundle\Database\MysqlDateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 use troba\EQM\EQM;
+use troba\Model\Finders;
 use troba\Model\Getters;
 use troba\Model\Persisters;
 use troba\Model\Setters;
 
 class User implements UserInterface
 {
-    use Persisters;
+    use Persisters, Finders;
 
     protected $__table = "users";
 
