@@ -340,10 +340,18 @@ class User implements UserInterface
         !$role instanceof Role && $role = new Role($role);
         $role->save();
 
-        $roles = $this->getRoles();
-        if (!array_search($role->getName(), $roles)) {
+        if (!$this->hasRole($role->getName())) {
             $this->associateRole($role);
         }
+    }
+
+    /**
+     * @param $role
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        return array_search($role, $this->getRoles()) !== false;
     }
 
     /**
