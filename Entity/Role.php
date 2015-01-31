@@ -26,8 +26,9 @@ class Role implements RoleInterface
     protected $created_at;
     protected $modified_at;
 
-    public function __construct()
+    public function __construct($name = null)
     {
+        $this->setName($name);
         $this->created_at = new MysqlDateTime();
         $this->modified_at = new MysqlDateTime();
     }
@@ -74,8 +75,12 @@ class Role implements RoleInterface
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setName($name, $disableRolePregmatch = false)
     {
+        if ($disableRolePregmatch) {
+            preg_match('/ROLE_(.*)/i', $name, $result);
+            count($result) && $name = $result[1];
+        }
         $this->name = $name;
     }
 

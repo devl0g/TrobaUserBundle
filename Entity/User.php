@@ -333,6 +333,33 @@ class User implements UserInterface
     }
 
     /**
+     * @param $role
+     */
+    public function addRole($role)
+    {
+        !$role instanceof Role && $role = new Role($role);
+        $role->save();
+
+        $roles = $this->getRoles();
+        if (!array_search($role->getName(), $roles)) {
+            $this->associateRole($role);
+        }
+    }
+
+    /**
+     * @param Role $role
+     */
+    public function associateRole(Role $role)
+    {
+        $sql = <<<SQL
+INSERT INTO roles_users VALUES (:userId, :roleId)
+  ON DUPLICATE KEY UPDATE user_id=user_id;
+SQL;
+
+        EQM::nativeExecute($sql, ['userId' => $this->id, 'roleId' => $role->getId()]);
+    }
+
+    /**
      * Removes sensitive data from the user.
      *
      * This is important if, at any given point, sensitive information like
