@@ -77,11 +77,11 @@ class Role implements RoleInterface
      */
     public function setName($name, $disableRolePregmatch = false)
     {
-        if ($disableRolePregmatch) {
+        if (!$disableRolePregmatch) {
             preg_match('/ROLE_(.*)/i', $name, $result);
             count($result) && $name = $result[1];
         }
-        $this->name = $name;
+        $this->name = mb_strtolower($name);
     }
 
     /**

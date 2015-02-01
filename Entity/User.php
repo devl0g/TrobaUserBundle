@@ -338,7 +338,13 @@ class User implements UserInterface
     public function addRole($role)
     {
         !$role instanceof Role && $role = new Role($role);
-        $role->save();
+
+        $duplicate = Role::findBy('name', $role->getName())->one();
+        if ($duplicate instanceof Role) {
+            $role = $duplicate;
+        } else {
+            $role->save();
+        }
 
         if (!$this->hasRole($role->getName())) {
             $this->associateRole($role);
