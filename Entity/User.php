@@ -374,6 +374,20 @@ SQL;
     }
 
     /**
+     * @param string $role
+     */
+    public function removeRole($role)
+    {
+        if ($this->hasRole($role)) {
+            $role = Role::findBy("role", $role)->one();
+            EQM::nativeExecute("DELETE FROM roles_users WHERE user_id = :userId AND role_id = :roleId LIMIT 1", [
+                'userId' => $this->id,
+                'roleId' => $role->getId()
+            ]);
+        }
+    }
+
+    /**
      * Removes sensitive data from the user.
      *
      * This is important if, at any given point, sensitive information like
