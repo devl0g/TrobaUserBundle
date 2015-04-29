@@ -379,7 +379,8 @@ SQL;
     public function removeRole($role)
     {
         if ($this->hasRole($role)) {
-            $role = Role::findBy("role", $role)->one();
+            $role = new Role($role);
+            $role = Role::findBy("name", $role->getName())->one();
             EQM::nativeExecute("DELETE FROM roles_users WHERE user_id = :userId AND role_id = :roleId LIMIT 1", [
                 'userId' => $this->id,
                 'roleId' => $role->getId()
