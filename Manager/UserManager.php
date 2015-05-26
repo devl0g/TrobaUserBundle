@@ -91,4 +91,15 @@ class UserManager
     {
         $user->removeRole($role);
     }
+
+    /**
+     * @param User $user
+     */
+    public function delete(User $user)
+    {
+        foreach ($user->getRoles() as $role) {
+            $user->removeRole($role);
+        }
+        $user->delete();
+    }
 } 
