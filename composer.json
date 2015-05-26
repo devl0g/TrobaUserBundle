@@ -19,6 +19,10 @@
         "scandio/troba": "dev-master"
     },
 
+    "suggest": {
+        "robmorgan/phinx": "for migrating DB"
+    },
+
     "autoload": {
         "psr-0": {
             "SikIndustries\\Bundles\\TrobaUserBundle": ""

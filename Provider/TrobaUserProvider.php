@@ -65,15 +65,7 @@ class TrobaUserProvider implements UserProviderInterface, SimpleFormAuthenticato
      */
     public function loadUserByUsername($username)
     {
-        $user = EQM::query($this->userManager->createUser())
-            ->where("username = :username", ['username' => $username])
-            ->one();
-
-        if (!$user instanceof UserInterface) {
-            throw new UsernameNotFoundException();
-        }
-
-        return $user;
+        return $this->userManager->getUser($username);
     }
 
     /**
