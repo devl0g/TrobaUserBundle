@@ -33,6 +33,11 @@ class Role implements RoleInterface
         $this->modified_at = new MysqlDateTime();
     }
 
+    public function __toString()
+    {
+        return $this->getRole();
+    }
+
     /**
      * Returns the role.
      *

@@ -2,8 +2,10 @@ SikIndustries\Bundles\TrobaUserBundle\Entity\User:
   constraints:
     - Scandio\TrobaBridgeBundle\Validator\Constraints\DuplicateEntity:
         field: username
+        groups: [registration]
     - Scandio\TrobaBridgeBundle\Validator\Constraints\DuplicateEntity:
         field: email
+        groups: [registration]
   properties:
     email:
       - NotBlank: ~

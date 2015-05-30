@@ -9,7 +9,9 @@
 namespace SikIndustries\Bundles\TrobaUserBundle\Manager;
 
 use Scandio\TrobaBridgeBundle\Manager\TrobaManager;
+use SikIndustries\Bundles\TrobaUserBundle\Database\MysqlDateTime;
 use SikIndustries\Bundles\TrobaUserBundle\Entity\User;
+use SikIndustries\Bundles\TrobaUserBundle\Salt\UserSalter;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -101,5 +103,55 @@ class UserManager
             $user->removeRole($role);
         }
         $user->delete();
+    }
+
+    /**
+     * @return \troba\EQM\AbstractResultSet
+     */
+    public function all()
+    {
+        return User::findAll(["username"]);
+    }
+
+    /**
+     * @param User $user
+     */
+    public function anonymize(User $user)
+    {
+        $user->anonymize();
+        $user->save();
+    }
+
+    /**
+     * @param $userId
+     * @return User
+     */
+    public function find($userId)
+    {
+        return $user = EQM::query($this->userClass)
+            ->where("id = :id", ['id' => $userId])
+            ->one()
+        ;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function update(User $user)
+    {
+        $user->setLastLogin(new MysqlDateTime());
+        $user->save();
+    }
+
+    /**
+     * @param User $user
+     */
+    public function insert(User $user, $encodePassword = true)
+    {
+        $user->setId(null);
+        $user->setLastLogin(new MysqlDateTime());
+        $user->setSalt(UserSalter::getSalt());
+        $encodePassword && $user->setPassword($this->password($user));
+        $user->save();
     }
 } 

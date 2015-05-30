@@ -52,12 +52,7 @@ class RegistrationController extends Controller
 
         if ($form->isValid()) {
             /** @var EQM $eqm */
-            $eqm = $this->get('troba.entity_manager');
-
-            $user->setSalt(UserSalter::getSalt());
-            $user->setPassword($userManager->password($user));
-
-            $eqm->insert($user);
+            $userManager->insert($user);
 
             $response = $this->redirect($this->generateUrl('dashboard'));
         } else {

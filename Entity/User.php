@@ -44,6 +44,15 @@ class User implements UserInterface
     }
 
     /**
+     * Anonymize User
+     */
+    public function anonymize()
+    {
+        $this->username = md5(uniqid().time());
+        $this->email = md5(uniqid().time()).'@example.com';
+    }
+
+    /**
      * @param mixed $username
      */
     public function setUsername($username)

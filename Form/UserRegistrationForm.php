@@ -30,7 +30,8 @@ class UserRegistrationForm extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'SikIndustries\Bundles\TrobaUserBundle\Entity\User'
+            'data_class' => 'SikIndustries\Bundles\TrobaUserBundle\Entity\User',
+            'validation_groups' => ['Default', 'registration'],
         ]);
     }
 
