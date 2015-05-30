@@ -40,6 +40,7 @@
             <argument>%sik_industries.user_class%</argument>
             <argument id="security.encoder_factory" type="service" />
             <argument id="troba.entity_manager" type="service" />
+            <argument id="session" type="service" />
         </service>
 
         <service id="sik_industries.role_manager" class="%sik_industries.role_manager.class%">

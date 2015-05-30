@@ -12,6 +12,7 @@ use Scandio\TrobaBridgeBundle\Manager\TrobaManager;
 use SikIndustries\Bundles\TrobaUserBundle\Database\MysqlDateTime;
 use SikIndustries\Bundles\TrobaUserBundle\Entity\User;
 use SikIndustries\Bundles\TrobaUserBundle\Salt\UserSalter;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -31,11 +32,17 @@ class UserManager
      */
     private $trobaManager;
 
-    public function __construct($userClass, EncoderFactoryInterface $encoderFactory, TrobaManager $trobaManager)
+    /**
+     * @var Session
+     */
+    private $session;
+
+    public function __construct($userClass, EncoderFactoryInterface $encoderFactory, TrobaManager $trobaManager, Session $session)
     {
         $this->userClass = $userClass;
         $this->encoderFactory = $encoderFactory;
         $this->trobaManager = $trobaManager;
+        $this->session = $session;
     }
 
     /**
@@ -66,10 +73,12 @@ class UserManager
     {
         $user = EQM::query($this->userClass)
             ->where("username = :username", ['username' => $username])
+            ->andWhere("locked = :locked", ['locked' => false])
             ->one()
         ;
 
         if (!$user instanceof UserInterface) {
+            $this->session->getFlashBag()->add("error", "User not found");
             throw new UsernameNotFoundException();
         }
 
@@ -110,7 +119,8 @@ class UserManager
      */
     public function all()
     {
-        return User::findAll(["username"]);
+        $className = $this->userClass;
+        return $className::findAll(["username"]);
     }
 
     /**
@@ -153,5 +163,37 @@ class UserManager
         $user->setSalt(UserSalter::getSalt());
         $encodePassword && $user->setPassword($this->password($user));
         $user->save();
+    }
+
+    /**
+     * @param User $user
+     */
+    public function toggle(User $user)
+    {
+        $user->toggleLocked();
+        $user->save();
+    }
+
+    /**
+     * @param User $user
+     */
+    public function resetPassword(User $user)
+    {
+        $user->setPasswordRequestedAt(new MysqlDateTime());
+        $user->setPasswordResetKey(md5(uniqid().time()));
+        $user->save();
+    }
+
+    /**
+     * @param $field
+     * @param $value
+     * @return object
+     */
+    public function findOneBy($field, $value)
+    {
+        return $user = EQM::query($this->userClass)
+            ->where("{$field} = :$field", [$field => $value])
+            ->one()
+            ;
     }
 } 

@@ -23,6 +23,7 @@ class User implements UserInterface
     protected $password;
     protected $last_login;
     protected $locked;
+    protected $password_reset_key;
     protected $expired;
     protected $expires_at;
     protected $confirmation_token;
@@ -50,6 +51,7 @@ class User implements UserInterface
     {
         $this->username = md5(uniqid().time());
         $this->email = md5(uniqid().time()).'@example.com';
+        $this->locked = true;
     }
 
     /**
@@ -58,6 +60,22 @@ class User implements UserInterface
     public function setUsername($username)
     {
         $this->username = $username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPasswordResetKey()
+    {
+        return $this->password_reset_key;
+    }
+
+    /**
+     * @param mixed $password_reset_key
+     */
+    public function setPasswordResetKey($password_reset_key)
+    {
+        $this->password_reset_key = $password_reset_key;
     }
 
     /**
@@ -417,5 +435,18 @@ SQL;
     {
         $this->last_login = $lastLogin;
         $this->save();
+    }
+
+    public function toggleLocked()
+    {
+        $this->locked = !$this->locked;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLocked()
+    {
+        return $this->locked;
     }
 }
