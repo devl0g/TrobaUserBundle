@@ -33,8 +33,8 @@ class ManageUsersCommand extends ContainerAwareCommand
                 InputArgument::REQUIRED,
                 'Username of the user in db'
             )
-            ->addOption("password")
-            ->addOption("email")
+            ->addOption("password", InputOption::VALUE_OPTIONAL)
+            ->addOption("email", InputOption::VALUE_OPTIONAL)
         ;
 
     }
