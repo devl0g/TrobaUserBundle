@@ -46,6 +46,7 @@ class ManageUsersCommand extends ContainerAwareCommand
         $userManager = $this->getContainer()->get("sik_industries.user_manager");
         $action = $input->getArgument('action');
         $username = $input->getArgument('username');
+        $email = $input->getOption("email") ? $input->getOption("email") : "example-".substr(md5(uniqid()), 0, 8)."@example.com";
         if (!empty($username) && in_array($action, ['add', 'remove'])) {
             $output->writeln("{$action} {$username}");
             try {
@@ -54,9 +55,9 @@ class ManageUsersCommand extends ContainerAwareCommand
                 $user = null;
             }
 
-            if ($action == "add" && is_null($user)) {
-                $password = $input->getOption("password") ? $input->getOption("password") : "123456";
-                $email = $input->getOption("email") ? $input->getOption("email") : "nobody@example.com";
+            $user = $userManager->findOneBy("email", $email);
+            if ($action == "add" && empty($user)) {
+                $password = $input->getOption("password") ? $input->getOption("password") : substr(md5(uniqid()), 0, 8);
 
                 $user = $userManager->createUser();
                 $user->setUsername($username);
