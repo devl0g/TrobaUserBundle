@@ -14,6 +14,7 @@ use SikIndustries\Bundles\TrobaUserBundle\Salt\UserSalter;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ManageUsersCommand extends ContainerAwareCommand
@@ -33,8 +34,8 @@ class ManageUsersCommand extends ContainerAwareCommand
                 InputArgument::REQUIRED,
                 'Username of the user in db'
             )
-            ->addOption("password", InputOption::VALUE_OPTIONAL)
-            ->addOption("email", InputOption::VALUE_OPTIONAL)
+            ->addOption("password", null, InputOption::VALUE_OPTIONAL)
+            ->addOption("email", null, InputOption::VALUE_OPTIONAL)
         ;
 
     }
