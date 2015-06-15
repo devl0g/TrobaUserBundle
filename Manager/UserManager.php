@@ -20,22 +20,22 @@ use troba\EQM\EQM;
 
 class UserManager
 {
-    private $userClass;
+    protected $userClass;
 
     /**
      * @var EncoderFactoryInterface
      */
-    private $encoderFactory;
+    protected $encoderFactory;
 
     /**
      * @var TrobaManager
      */
-    private $trobaManager;
+    protected $trobaManager;
 
     /**
      * @var Session
      */
-    private $session;
+    protected $session;
 
     public function __construct($userClass, EncoderFactoryInterface $encoderFactory, TrobaManager $trobaManager, Session $session)
     {
@@ -141,7 +141,7 @@ class UserManager
         return $user = EQM::query($this->userClass)
             ->where("id = :id", ['id' => $userId])
             ->one()
-        ;
+            ;
     }
 
     /**
