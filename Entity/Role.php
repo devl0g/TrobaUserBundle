@@ -82,11 +82,21 @@ class Role implements RoleInterface
      */
     public function setName($name, $disableRolePregmatch = false)
     {
+        $this->name = self::name($name, $disableRolePregmatch);
+    }
+
+    /**
+     * @param $name
+     * @param bool $disableRolePregmatch
+     * @return string
+     */
+    public static function name($name, $disableRolePregmatch = false)
+    {
         if (!$disableRolePregmatch) {
             preg_match('/ROLE_(.*)/i', $name, $result);
             count($result) && $name = $result[1];
         }
-        $this->name = mb_strtolower($name);
+        return mb_strtolower($name);
     }
 
     /**
