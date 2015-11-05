@@ -10,18 +10,26 @@ namespace SikIndustries\Bundles\TrobaUserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class UserReenterPasswordForm extends AbstractType
 {
     const NAME = 'user_reset_form';
+
+    /** @var TranslatorInterface */
+    private $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('password', 'repeated', array(
                 'type' => 'password',
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => $this->translator->trans('The password fields must match.'),
                 'options' => array('attr' => array('class' => 'password-field')),
                 'required' => true,
                 'first_options'  => array('label' => 'Password'),

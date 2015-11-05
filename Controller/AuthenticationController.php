@@ -72,7 +72,7 @@ class AuthenticationController extends Controller
             throw new NotFoundHttpException();
         }
 
-        $form = $this->createForm(new UserReenterPasswordForm());
+        $form = $this->createForm(new UserReenterPasswordForm($this->get('translator')));
         $form->handleRequest($request);
 
         $isValid = false;
